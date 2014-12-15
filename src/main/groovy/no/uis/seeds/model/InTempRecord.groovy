@@ -48,11 +48,22 @@ class InTempRecord {
         "$metric $timestamp $value room=${room.room} floor=${room.floor} locationType=${room.locationType.name().toLowerCase()}"
     }
 
-    String toJson() {
+    String forOpenTsdbJson() {
         assert valid: "Not valid values for $this"
         """
         {
             "metric": "$metric",
+            "timestamp": $timestamp,
+            "value": $value,
+            "tags":  $tagsAsJson
+        }
+        """
+    }
+  String forKairosdbTsdbJson() {
+        assert valid: "Not valid values for $this"
+        """
+        {
+            "name": "$metric",
             "timestamp": $timestamp,
             "value": $value,
             "tags":  $tagsAsJson
@@ -72,7 +83,7 @@ class InTempRecord {
     }
 
     static String batchToJson(List<InTempRecord> inTempRecordList) {
-        def join = inTempRecordList.findAll { it.valid }.collect { it.toJson() }.join(',')
+        def join = inTempRecordList.findAll { it.valid }.collect { it.forOpenTsdbJson() }.join(',')
         "[$join\n]"
     }
 

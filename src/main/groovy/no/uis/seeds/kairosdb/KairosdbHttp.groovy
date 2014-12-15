@@ -1,4 +1,4 @@
-package no.uis.seeds.opentsdb
+package no.uis.seeds.kairosdb
 
 import groovy.transform.Memoized
 import groovy.util.logging.Slf4j
@@ -10,16 +10,16 @@ import static groovyx.net.http.ContentType.JSON
 import static groovyx.net.http.Method.POST
 
 @Slf4j
-class OpenTSDBHttp {
+class KairosdbHttp {
     final String url
 
-    private OpenTSDBHttp(String url) {
+    private KairosdbHttp(String url) {
         this.url = url
     }
 
     @Memoized
-    static OpenTSDBHttp getInstance(String url = 'http://localhost:8073/api/put') {
-        new OpenTSDBHttp(url)
+    static KairosdbHttp getInstance(String url = 'http://localhost:8022/api/v1/datapoints') {
+        new KairosdbHttp(url)
     }
 
     void put(String jsonBody) {
@@ -33,7 +33,7 @@ class OpenTSDBHttp {
 
     void put(InTempRecord inTempRecord) {
         new HTTPBuilder(url).request(POST, JSON) { request ->
-            body = inTempRecord.forOpenTsdbJson()
+            body = inTempRecord.forKairosdbTsdbJson()
             response.success = { HttpResponseDecorator response ->
                 log.info inTempRecord.formattedDate
             }

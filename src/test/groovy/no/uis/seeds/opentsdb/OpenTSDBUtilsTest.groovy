@@ -14,7 +14,7 @@ class OpenTSDBUtilsTest extends GroovyTestCase {
     }
 
     void testWriteToFileForImport() {
-        List<InTempRecord> load = RecordRepository.load()
-        OpenTSDBUtils.writeToFileForImport('/Users/maziarkaveh/Desktop/import.txt',load)
+        List<InTempRecord> load = new RecordRepository().fetchAll()
+        OpenTSDBUtils.writeToFileForImport("${System.getProperty('user.home')}/import.txt",load)
     }
 }

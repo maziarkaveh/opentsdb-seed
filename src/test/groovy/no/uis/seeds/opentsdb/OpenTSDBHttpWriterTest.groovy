@@ -14,7 +14,7 @@ class OpenTSDBHttpWriterTest extends GroovyTestCase {
 
     void testPut() {
 
-        RecordRepository.load(RecordRepository.SQL, 100).findAll { it.valid }.each {
+        new RecordRepository(sql:RecordRepository.DEFAULT_SQL).fetchAll().findAll { it.valid }.each {
             OpenTSDBHttp.instance.put(it)
 
         }

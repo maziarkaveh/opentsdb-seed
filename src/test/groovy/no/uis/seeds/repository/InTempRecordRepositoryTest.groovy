@@ -12,9 +12,16 @@ class InTempRecordRepositoryTest extends GroovyTestCase {
     }
 
     void testLoad() {
-        def load = RecordRepository.load(RecordRepository.SQL, 10)
+        def load = new RecordRepository().fetchAll()
         println InTempRecord.batchToJson(load)
         println InTempRecord.batchToRows(load)
+
+    }
+
+    void testForEach() {
+        def load = new RecordRepository().forEach { InTempRecord InTempRecord ->
+            println InTempRecord
+        }
 
     }
 }
