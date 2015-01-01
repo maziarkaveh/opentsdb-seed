@@ -1,7 +1,7 @@
-package no.uis.seeds.opentsdb
+package no.uis.seeds.timeseriesdb.opentsdb
 
 import no.uis.seeds.model.InTempRecord
-import no.uis.seeds.repository.RecordRepository
+import no.uis.seeds.repository.MysqlRecordRepository
 
 class OpenTSDBUtilsTest extends GroovyTestCase {
     void setUp() {
@@ -14,7 +14,7 @@ class OpenTSDBUtilsTest extends GroovyTestCase {
     }
 
     void testWriteToFileForImport() {
-        List<InTempRecord> load = new RecordRepository().fetchAll()
+        List<InTempRecord> load = new MysqlRecordRepository().fetchAll()
         OpenTSDBUtils.writeToFileForImport("${System.getProperty('user.home')}/import.txt",load)
     }
 }

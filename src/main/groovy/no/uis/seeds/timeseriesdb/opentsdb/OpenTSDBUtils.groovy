@@ -1,4 +1,4 @@
-package no.uis.seeds.opentsdb
+package no.uis.seeds.timeseriesdb.opentsdb
 
 import no.uis.seeds.model.InTempRecord
 

@@ -2,7 +2,7 @@ package no.uis.seeds.repository
 
 import no.uis.seeds.model.InTempRecord
 
-class InTempRecordRepositoryTest extends GroovyTestCase {
+class InTempMysqlRecordRepositoryTest extends GroovyTestCase {
     void setUp() {
         super.setUp()
 
@@ -12,14 +12,14 @@ class InTempRecordRepositoryTest extends GroovyTestCase {
     }
 
     void testLoad() {
-        def load = new RecordRepository().fetchAll()
+        def load = new MysqlRecordRepository().fetchAll()
         println InTempRecord.batchToJson(load)
         println InTempRecord.batchToRows(load)
 
     }
 
     void testForEach() {
-        def load = new RecordRepository().forEach { InTempRecord InTempRecord ->
+        def load = new MysqlRecordRepository().forEach { InTempRecord InTempRecord ->
             println InTempRecord
         }
 
