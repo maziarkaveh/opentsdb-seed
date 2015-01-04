@@ -48,7 +48,7 @@ class KairosdbHttp implements TimeSeriesDBHttpApi {
         new HTTPBuilder("$url/query").request(POST, JSON) { request ->
             body = query.toKairosDBFormat()
             response.success = { resp, json->
-               json
+               json.queries.find().results.find().values
             }
         }
     }

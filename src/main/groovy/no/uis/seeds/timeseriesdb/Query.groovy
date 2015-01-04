@@ -13,7 +13,7 @@ class Query {
         assert aggregate
         assert metric
         def tags = tags.collect { "$it.key=$it.value" }.join(',')
-        def subQuery = "$aggregate:$metric{$tags}"
+        def subQuery = "$aggregate:10m-$aggregate:$metric{$tags}"
         [start: start, end: end, m: subQuery].findAll { it.value }
     }
 
@@ -37,8 +37,8 @@ class Query {
                             {
                                 "name": "$aggregate",
                                 "sampling": {
-                                    "value": 1,
-                                    "unit": "seconds"
+                                    "value": 10,
+                                    "unit": "minutes"
                                 }
                             }
                         ]

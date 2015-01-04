@@ -7,7 +7,6 @@ class MysqlRecordRepository {
     static final DEFAULT_TABLE_NAME = 'cipsi_seeds_uis_in_temp'
     static final DEFAULT_SQL        = new DBConfig().buildSqlInstance()
     Sql          sql                = DEFAULT_SQL
-    int          size               = 0
     String       tableName          = DEFAULT_TABLE_NAME
 
 
@@ -25,7 +24,7 @@ class MysqlRecordRepository {
 
     private void eachRow(Closure closure) {
         // group by time,identity
-        def query = "select * from cipsi_seeds_uis_in_temp WHERE id > ?  ORDER BY id limit 100000 "
+        def query = "select * from $tableName WHERE id > ?  ORDER BY id limit 100000 "
         Integer maxId = 0
         def executeQuery = {
             def oldMaxId = maxId

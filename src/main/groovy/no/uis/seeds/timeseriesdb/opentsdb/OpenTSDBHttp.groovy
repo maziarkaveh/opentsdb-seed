@@ -45,6 +45,6 @@ class OpenTSDBHttp implements TimeSeriesDBHttpApi {
 
     @Override
     def query(Query query) {
-        new HTTPBuilder(url).get(path: '/api/query', query: query.toOpenTSDBFormat())
+        new HTTPBuilder(url).get(path: '/api/query', query: query.toOpenTSDBFormat()).find()?.dps
     }
 }

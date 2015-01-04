@@ -43,6 +43,28 @@
             <version>${http-builder.version}</version>
         </dependency>
 
+        <!-- <dependency>
+             <groupId>org.kairosdb</groupId>
+             <artifactId>kairosdb</artifactId>
+             <version>0.9.4-5</version>
+         </dependency>
+         <dependency>
+             <groupId>org.kairosdb</groupId>
+             <artifactId>client</artifactId>
+             <version>2.0</version>
+         </dependency>
+         <dependency>
+             <groupId>com.github.sps.metrics</groupId>
+             <artifactId>metrics-opentsdb</artifactId>
+             <version>1.0.4</version>
+         </dependency>
+ -->
+        <dependency>
+            <groupId>org.jfree</groupId>
+            <artifactId>jfreechart</artifactId>
+            <version>1.0.19</version>
+        </dependency>
+
 
     </dependencies>
     <build>
